@@ -1,0 +1,20 @@
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+#outlier detection with ıqr method
+
+q1 = df.quantile(0.25)
+q3 = df.quantile(0.75)
+
+iqr = q3-q1
+
+lower_threshold = q1-(iqr*15)
+upper_threshold = q3+(iqr*15)
+
+print( 'Lower Threshold:'+str(lower_threshold)+'\nUpper Threshold:'+str(upper_threshold))
+
+rest = df2.loc[(df <= upper_threshold) & (df >= lower_threshold)]
+
+sns.boxplot(rest) # 'HE_after_HE_Q' boxplot after IQR
